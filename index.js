@@ -19,12 +19,92 @@ var vision = gcloud.vision();
 
 var app = express();
 
-var user_id = "";
-
 app.use(bodyParser.json());
+
+var params=function(request){
+  var q=request.url.split('?'),result={};
+  if(q.length>=2){
+      q[1].split('&').forEach((item)=>{
+           try {
+             result[item.split('=')[0]]=item.split('=')[1];
+           } catch (e) {
+             result[item.split('=')[0]]='';
+           }
+      })
+  }
+  return result;
+}
+	
+request.params=params(request);
+
+var user_id = request.params.user_id;
+
+var planname = request.params.planname;
 
 app.post('/', upload.single('image'), function(req, res, next) {
 
+var user_id = req.body.user_id;
+var name = req.body.name;
+var dob = req.body.dob;
+var sex = req.body.sex;
+
+if(name && dob && sex)
+{
+	
+sendmail({
+from: 'no-reply@yourdomain.com',
+to: 'sriharan40@gmail.com, himantgupta@gmail.com',
+subject: 'Test sendmail',
+html: JSON.stringify(event.body),
+}, function(err, reply) {
+console.log(err && err.stack);
+console.dir(reply);
+});
+
+
+var text = "Your form was submitted successfully with the details as : Name : "+name+", Plan : "+planname+", Sex : "+sex+", DOB : "+dob+"";
+
+var token = process.env.FB_PAGE_TOKEN;
+
+var requestData = {
+      url: 'https://graph.facebook.com/v2.6/me/messages',
+      qs: {access_token:token},
+      method: 'POST',
+      json: {
+        dashbotTemplateId: 'right',		  
+        recipient: {
+			id:user_id
+			},
+        message: {
+		   text:text	
+		}
+      }
+};
+
+console.log('RequestData:', requestData);
+
+request(requestData, function(error, res, body) {  
+if (error) {
+  console.log('Error sending message: ', error);
+} else if (res.body.error) {
+  console.log('Error: ', res.body.error);
+  }
+
+});
+
+  
+var form1 = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="https://s3-us-west-2.amazonaws.com/telcocode/responsiveform.css">'+
+'<div id="envelope"><body align="left" onload=window.location="http://m.me/digitaldemofortelcos"><header><h2>Personal Details</h2></header><hr>' +
+'<p>Details submitted successfully</p>'+
+'</div>'+  
+'</body></html>';
+
+callback(null,form1);	
+
+}
+
+else
+{
 // Choices are: faces, landmarks, labels, logos, properties, safeSearch, texts
 var types = ['text'];
 
@@ -46,7 +126,7 @@ var texts = JSON.stringify(apiResponse.responses[0].textAnnotations[0].descripti
 	  
 var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="https://s3-us-west-2.amazonaws.com/telcocode/responsiveform.css"><div id="envelope"><body align="left" style="margin:0 auto;"><header><h2>Personal Details</h2></header><hr>' +
 '<form class="form-style-9" action="" method="post" enctype="multipart/form-data">' +
-'<input type="file" style="font-size:32px;" name="image" accept="image/*" /><input type="submit" style="width:250px; padding:10px; font-size:32px;" value="Upload NRIC" /><br /><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Your Name </label><input type="hidden" name="user_id" class="field-style field-split align-left" value="'+user_id+'" /><input type="text" name="name" class="field-style field-split align-left" value='+texts+' placeholder="Name" />'+
+'<input type="file" style="font-size:32px;" name="image" accept="image/*" /><input type="submit" style="width:250px; padding:10px; font-size:32px;" value="Upload NRIC" /><br /><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Plan Name </label><input type="text" name="plan_name" class="field-style field-split align-left" value='+planname+' placeholder="Plan Name" /><br /><label>Your Name </label><input type="hidden" name="user_id" class="field-style field-split align-left" value='+user_id+' /><input type="text" name="name" class="field-style field-split align-left" value='+texts+' placeholder="Name" />'+
 '<label>Dob </label><input type="text" name="dob" class="field-style field-split align-right" placeholder="DOB" />'+
 '<label>Sex </label><input type="text" name="sex" class="field-style field-split align-left" placeholder="Sex" />'+
 '<br /><br /><input type="submit" value="Submit" />'+
@@ -66,17 +146,7 @@ var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="ht
       res.end();
     }
   });
-  
-var image_url = req.body.image_url;
-
-if(image_url)
-{
-
-console.log("Path: "+image_url);
-  
-res.write(content, null, 4);
-
-res.end();
+  		
 }	
 
 });
@@ -87,16 +157,16 @@ res.end();
 // TODO implement
 // Simple upload form
 
+app.get('/', function(req, res) {
+
 var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="https://s3-us-west-2.amazonaws.com/telcocode/responsiveform.css"><div id="envelope"><body align="left" style="margin:0 auto;"><header><h2>Personal Details</h2></header><hr>' +
 '<form class="form-style-9" action="" method="post" enctype="multipart/form-data">' +
-'<input type="file" style="font-size:32px;" name="image" accept="image/*" /><input type="submit" style="width:250px; padding:10px; font-size:32px;" value="Upload NRIC" /><br /><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Your Name </label><input type="hidden" name="user_id" class="field-style field-split align-left" value="'+user_id+'" /><input type="text" name="name" class="field-style field-split align-left" placeholder="Name" />'+
+'<input type="file" style="font-size:32px;" name="image" accept="image/*" /><input type="submit" style="width:250px; padding:10px; font-size:32px;" value="Upload NRIC" /><br /><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Plan Name </label><input type="text" name="plan_name" class="field-style field-split align-left" value='+planname+' placeholder="Plan Name" /><br /><label>Your Name </label><input type="hidden" name="user_id" class="field-style field-split align-left" value='+user_id+' /><input type="text" name="name" class="field-style field-split align-left" placeholder="Name" />'+
 '<label>Dob </label><input type="text" name="dob" class="field-style field-split align-right" placeholder="DOB" />'+
 '<label>Sex </label><input type="text" name="sex" class="field-style field-split align-left" placeholder="Sex" />'+
 '<br /><br /><input type="submit" value="Submit" />'+
 '</form></div>'+
 '</body></html>';
-
-app.get('/', function(req, res) {
 
 res.writeHead(200, {
     'Content-Type': 'text/html'
