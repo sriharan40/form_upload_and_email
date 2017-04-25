@@ -19,6 +19,8 @@ var vision = gcloud.vision();
 
 var app = express();
 
+var user_id = "";
+
 app.use(bodyParser.json());
 
 app.post('/', function(req, res){
