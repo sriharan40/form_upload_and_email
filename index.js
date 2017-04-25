@@ -46,7 +46,7 @@ var texts = JSON.stringify(apiResponse.responses[0].textAnnotations[0].descripti
 	  
 var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="https://s3-us-west-2.amazonaws.com/telcocode/responsiveform.css"><div id="envelope"><body align="left" style="margin:0 auto;"><header><h2>Personal Details</h2></header><hr>' +
 '<form class="form-style-9" action="" method="post" enctype="multipart/form-data">' +
-'<input type="file" style="font-size:32px;" name="image" accept="image/*" /><input type="submit" style="width:250px; padding:10px; font-size:32px;" value="Upload NRIC" /><br /><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Your Name </label><input type="hidden" name="user_id" class="field-style field-split align-left" value="'+user_id+'" /><input type="text" name="name" class="field-style field-split align-left" value="'+texts+'" placeholder="Name" />'+
+'<input type="file" style="font-size:32px;" name="image" accept="image/*" /><input type="submit" style="width:250px; padding:10px; font-size:32px;" value="Upload NRIC" /><br /><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Your Name </label><input type="hidden" name="user_id" class="field-style field-split align-left" value="'+user_id+'" /><input type="text" name="name" class="field-style field-split align-left" value='+texts+' placeholder="Name" />'+
 '<label>Dob </label><input type="text" name="dob" class="field-style field-split align-right" placeholder="DOB" />'+
 '<label>Sex </label><input type="text" name="sex" class="field-style field-split align-left" placeholder="Sex" />'+
 '<br /><br /><input type="submit" value="Submit" />'+
@@ -56,7 +56,7 @@ var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="ht
       var textsHtmlwithoutQuotes = texts.replace(/"/g, '');
       var textWithNextline = textsHtmlwithoutQuotes.replace(/\\n/g, '</br>');
       console.log("Check texts ::>>" + textWithNextline);      
-      res.write('<p>' + textWithNextline + '</p>', null, 4);
+      //res.write('<p>' + textWithNextline + '</p>', null, 4);
 
 	  res.write(form);
 	  
