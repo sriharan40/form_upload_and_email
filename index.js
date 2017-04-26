@@ -124,20 +124,25 @@ vision.detect(req.file.path, types, function(err, detections, apiResponse) {
 
 //var jsonOutput = JSON.parse(apiResponse);
 var texts = JSON.stringify(apiResponse.responses[0].textAnnotations[0].description);
+
+var textsHtmlwithoutQuotes = texts.replace(/"/g, '');
+
+var textWithNextline = textsHtmlwithoutQuotes.replace(/\\n/g, '</br>');
+
+console.log("Check texts ::>>" + textWithNextline);      
+	  
+var arr = textWithNextline.split("</br>");
+
+var your_name = arr[4];
 	  
 var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="https://s3-us-west-2.amazonaws.com/telcocode/responsiveform.css"><div id="envelope"><body align="left" style="margin:0 auto;"><header><h2>Personal Details</h2></header><hr>' +
 '<form class="form-style-9" action="" method="post" enctype="multipart/form-data">' +
-'<input type="file" style="font-size:32px;" name="image" accept="image/*" /><input type="submit" style="width:250px; padding:10px; font-size:32px;" value="Upload NRIC" /><br /><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Plan Name </label><input type="text" name="plan_name" class="field-style field-split align-left" value='+planname+' placeholder="Plan Name" /><br /><label>Your Name </label><input type="text" name="name" class="field-style field-split align-left" value='+texts+' placeholder="Name" />'+
+'<input type="file" style="font-size:32px;" name="image" accept="image/*" /><input type="submit" style="width:250px; padding:10px; font-size:32px;" value="Upload NRIC" /><br /><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Plan Name </label><input type="text" name="plan_name" class="field-style field-split align-left" value='+planname+' placeholder="Plan Name" /><br /><label>Your Name </label><input type="text" name="name" class="field-style field-split align-left" value='+your_name+' placeholder="Name" />'+
 '<label>Dob </label><input type="text" name="dob" class="field-style field-split align-right" placeholder="DOB" />'+
 '<label>Sex </label><input type="text" name="sex" class="field-style field-split align-left" placeholder="Sex" />'+
 '<br /><br /><input type="submit" value="Submit" />'+
 '</form></div>'+
 '</body></html>';
-
-      var textsHtmlwithoutQuotes = texts.replace(/"/g, '');
-      var textWithNextline = textsHtmlwithoutQuotes.replace(/\\n/g, '</br>');
-      console.log("Check texts ::>>" + textWithNextline);      
-      //res.write('<p>' + textWithNextline + '</p>', null, 4);
 
 	  res.write(form);
 	  
