@@ -170,6 +170,8 @@ else if(arr[10].match(/[A-Z]/g))
 	var sex = arr[10];
 }
 
+console.log("DOB ::>>" + arr[9]);      
+
 else if(arr[9].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
 {
 var dob = arr[9];
