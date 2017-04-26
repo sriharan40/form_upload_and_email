@@ -65,7 +65,7 @@ console.dir(reply);
 });
 
 
-var text = "Your form was submitted successfully with the details as : Name : "+name+", Plan : "+planname+", Sex : "+sex+", DOB : "+dob+"";
+var text = "Your request was submitted successfully with the details as : Name : "+name+", Plan : "+planname+", Sex : "+sex+", DOB : "+dob+" \n\n Our sales team will contact you within 48Hours.";
 
 var token = process.env.FB_PAGE_TOKEN;
 
