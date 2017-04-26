@@ -95,6 +95,9 @@ if (error) {
 
 });
 
+res.writeHead(200, {
+'Content-Type': 'text/html'
+});
   
 var form1 = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="https://s3-us-west-2.amazonaws.com/telcocode/responsiveform.css">'+
 '<div id="envelope"><body align="left" onload=window.location="http://m.me/digitaldemofortelcos"><header><h2>Personal Details</h2></header><hr>' +
@@ -102,7 +105,12 @@ var form1 = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="h
 '</div>'+  
 '</body></html>';
 
-callback(null,form1);	
+res.write(form);
+
+// Delete file (optional)
+fs.unlinkSync(req.file.path);
+
+res.end();
 
 }
 
