@@ -105,7 +105,7 @@ var form1 = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="h
 '</div>'+  
 '</body></html>';
 
-res.write(form);
+res.write(form1);
 
 // Delete file (optional)
 fs.unlinkSync(req.file.path);
