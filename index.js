@@ -160,17 +160,20 @@ else if(arr[2] == "Name")
 var your_name = arr[3].toString().toUpperCase();
 }
 
+console.log("Name ::>>" + your_name);      
+
 if(arr[9].match(/[A-Z]/g))
 {
-	var sex = arr[9];
+var sex = arr[9];
+console.log("SEX ::>>" + arr[9]);      
 }
 
 else if(arr[10].match(/[A-Z]/g))
 {
-	var sex = arr[10];
+var sex = arr[10];
+console.log("SEX ::>>" + arr[10]);      
 }
 
-console.log("DOB ::>>" + arr[9]);      
 
 if(arr[9].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
 {
@@ -181,6 +184,8 @@ else if(arr[10].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
 {
 var dob = arr[10];
 }
+
+console.log("DOB ::>>" + dob);      
 	  
 var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="https://s3-us-west-2.amazonaws.com/telcocode/responsiveform.css"><div id="envelope"><body align="left" style="margin:0 auto;"><header><h2>Personal Details</h2></header><hr>' +
 '<form class="form-style-9" action="" method="post" enctype="multipart/form-data">' +
