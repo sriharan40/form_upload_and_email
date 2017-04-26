@@ -21,8 +21,10 @@ var app = express();
 
 app.use(bodyParser.json());
 
-var params=function(request){
-  var q=request.url.split('?'),result={};
+app.post('/', upload.single('image'), function(req, res, next) {
+
+var params=function(req){
+  var q=req.url.split('?'),result={};
   if(q.length>=2){
       q[1].split('&').forEach((item)=>{
            try {
@@ -35,17 +37,16 @@ var params=function(request){
   return result;
 }
 	
-request.params=params(request);
+req.params=params(req);
 
-var user_id = request.params.user_id;
+var user_id = req.params.user_id;
 
-var planname = request.params.planname;
+var planname = req.params.planname;
 
-app.post('/', upload.single('image'), function(req, res, next) {
-
-var user_id = req.body.user_id;
 var name = req.body.name;
+
 var dob = req.body.dob;
+
 var sex = req.body.sex;
 
 if(name && dob && sex)
@@ -55,7 +56,7 @@ sendmail({
 from: 'no-reply@yourdomain.com',
 to: 'sriharan40@gmail.com, himantgupta@gmail.com',
 subject: 'Test sendmail',
-html: JSON.stringify(event.body),
+html: JSON.stringify(req.body),
 }, function(err, reply) {
 console.log(err && err.stack);
 console.dir(reply);
@@ -126,7 +127,7 @@ var texts = JSON.stringify(apiResponse.responses[0].textAnnotations[0].descripti
 	  
 var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="https://s3-us-west-2.amazonaws.com/telcocode/responsiveform.css"><div id="envelope"><body align="left" style="margin:0 auto;"><header><h2>Personal Details</h2></header><hr>' +
 '<form class="form-style-9" action="" method="post" enctype="multipart/form-data">' +
-'<input type="file" style="font-size:32px;" name="image" accept="image/*" /><input type="submit" style="width:250px; padding:10px; font-size:32px;" value="Upload NRIC" /><br /><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Plan Name </label><input type="text" name="plan_name" class="field-style field-split align-left" value='+planname+' placeholder="Plan Name" /><br /><label>Your Name </label><input type="hidden" name="user_id" class="field-style field-split align-left" value='+user_id+' /><input type="text" name="name" class="field-style field-split align-left" value='+texts+' placeholder="Name" />'+
+'<input type="file" style="font-size:32px;" name="image" accept="image/*" /><input type="submit" style="width:250px; padding:10px; font-size:32px;" value="Upload NRIC" /><br /><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Plan Name </label><input type="text" name="plan_name" class="field-style field-split align-left" value='+planname+' placeholder="Plan Name" /><br /><label>Your Name </label><input type="text" name="name" class="field-style field-split align-left" value='+texts+' placeholder="Name" />'+
 '<label>Dob </label><input type="text" name="dob" class="field-style field-split align-right" placeholder="DOB" />'+
 '<label>Sex </label><input type="text" name="sex" class="field-style field-split align-left" placeholder="Sex" />'+
 '<br /><br /><input type="submit" value="Submit" />'+
@@ -159,9 +160,29 @@ var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="ht
 
 app.get('/', function(req, res) {
 
+var params=function(req){
+  var q=req.url.split('?'),result={};
+  if(q.length>=2){
+      q[1].split('&').forEach((item)=>{
+           try {
+             result[item.split('=')[0]]=item.split('=')[1];
+           } catch (e) {
+             result[item.split('=')[0]]='';
+           }
+      })
+  }
+  return result;
+}
+	
+req.params=params(req);
+
+var user_id = req.params.user_id;
+
+var planname = req.params.planname;
+
 var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="https://s3-us-west-2.amazonaws.com/telcocode/responsiveform.css"><div id="envelope"><body align="left" style="margin:0 auto;"><header><h2>Personal Details</h2></header><hr>' +
 '<form class="form-style-9" action="" method="post" enctype="multipart/form-data">' +
-'<input type="file" style="font-size:32px;" name="image" accept="image/*" /><input type="submit" style="width:250px; padding:10px; font-size:32px;" value="Upload NRIC" /><br /><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Plan Name </label><input type="text" name="plan_name" class="field-style field-split align-left" value='+planname+' placeholder="Plan Name" /><br /><label>Your Name </label><input type="hidden" name="user_id" class="field-style field-split align-left" value='+user_id+' /><input type="text" name="name" class="field-style field-split align-left" placeholder="Name" />'+
+'<input type="file" style="font-size:32px;" name="image" accept="image/*" /><input type="submit" style="width:250px; padding:10px; font-size:32px;" value="Upload NRIC" /><br /><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Plan Name </label><input type="text" name="plan_name" class="field-style field-split align-left" value='+planname+' placeholder="Plan Name" /><br /><label>Your Name </label><input type="text" name="name" class="field-style field-split align-left" placeholder="Name" />'+
 '<label>Dob </label><input type="text" name="dob" class="field-style field-split align-right" placeholder="DOB" />'+
 '<label>Sex </label><input type="text" name="sex" class="field-style field-split align-left" placeholder="Sex" />'+
 '<br /><br /><input type="submit" value="Submit" />'+
@@ -175,59 +196,6 @@ res.writeHead(200, {
 
 });
 
-// Get the uploaded image
-// Image is uploaded to req.file.path
-app.post('/upload', upload.single('image'), function(req, res, next) {
-
-// Choose what the Vision API should detect
-// Choices are: faces, landmarks, labels, logos, properties, safeSearch, texts
-var types = ['text'];
-
-//console.log("Req: "+req.body.toString());
-  
-console.log("Path: "+req.file.path);
-  
-// Send the image to the Cloud Vision API
-vision.detect(req.file.path, types, function(err, detections, apiResponse) {
-//vision.detectText(req.file.path, function(err, text, apiResponse) {  
-  if (err) {
-      res.end('Cloud Vision Error '+err);
-    } else {
-      res.writeHead(200, {
-        'Content-Type': 'text/html'
-      });
-      res.write('<!DOCTYPE HTML><html><body>');
-
-      // Base64 the image so we can display it on the page
-      res.write('<img width=200 src="' + base64Image(req.file.path) + '">');
-
-      //var jsonOutput = JSON.parse(apiResponse);
-      var texts = JSON.stringify(apiResponse.responses[0].textAnnotations[0].description);
-      var textsHtmlwithoutQuotes = texts.replace(/"/g, '');
-      var textWithNextline = textsHtmlwithoutQuotes.replace(/\\n/g, '</br>');
-      console.log("Check texts ::>>" + textWithNextline);
-      // Write out the JSON output of the Vision API
-       //res.write(JSON.stringify(jsonObj.textAnnotations, null, 4));
-      
-      res.write('<p>' + textWithNextline + '</p>', null, 4);
-
-      // Delete file (optional)
-      fs.unlinkSync(req.file.path);
-
-      res.end('</body></html>');
-    }
-  });
-});
-
 app.listen(REST_PORT, () => {
     console.log('Rest service ready on port ' + REST_PORT);
 });
-
-//console.log('Server Started');
-
-// Turn image into Base64 so we can display it easily
-
-function base64Image(src) {
-  var data = fs.readFileSync(src).toString('base64');
-  return util.format('data:%s;base64,%s', mime.lookup(src), data);
-}
