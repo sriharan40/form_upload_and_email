@@ -150,11 +150,35 @@ var arr = textWithNextline.split("</br>");
 
 console.log("Check splitted ::>>" + arr);      
 
+if(arr[3] == "Name")
+{
 var your_name = arr[4].toString().toUpperCase();
+}
 
-var sex = arr[9];
+else if(arr[2] == "Name")
+{
+var your_name = arr[3].toString().toUpperCase();
+}
 
+if(arr[9].match(/[A-Z]/g);)
+{
+	var sex = arr[9];
+}
+
+else if(arr[10].match(/[A-Z]/g);)
+{
+	var sex = arr[10];
+}
+
+else if(arr[9].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g);)
+{
+var dob = arr[9];
+}
+
+else if(arr[10].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g);)
+{
 var dob = arr[10];
+}
 	  
 var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="https://s3-us-west-2.amazonaws.com/telcocode/responsiveform.css"><div id="envelope"><body align="left" style="margin:0 auto;"><header><h2>Personal Details</h2></header><hr>' +
 '<form class="form-style-9" action="" method="post" enctype="multipart/form-data">' +
