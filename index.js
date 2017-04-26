@@ -103,12 +103,12 @@ var form1 = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="h
 '<div id="envelope"><body align="left" onload=window.location="http://m.me/digitaldemofortelcos"><header><h2>Personal Details</h2></header><hr>' +
 '<p>Details submitted successfully</p>'+
 '<form class="form-style-9" action="" method="post" enctype="multipart/form-data">' +
-'<input type="file" style="font-size:32px; float:left;" name="image" accept="image/*" /><input type="submit" style="width:250px; padding:10px; font-size:32px; float:right;" value="Upload NRIC" /><div style="clear:both;"></div></form><form class="form-style-9" action="" method="post" enctype="multipart/form-data"><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Plan Name </label><input type="text" name="plan_name" class="field-style field-split align-left" value='+planname+' placeholder="Plan Name" readonly /><br /><label>Your Name </label><input type="text" name="name" class="field-style field-split align-left" placeholder="Name" />'+
+'<label class="custom-file-upload">Choose File<input type="file" style="font-size:32px; float:left;" name="image" accept="image/*" /></label><input type="submit" style="width:250px; padding:10px; font-size:32px; float:right;" value="Upload NRIC" /><div style="clear:both;"></div></form><form class="form-style-9" action="" method="post" enctype="multipart/form-data"><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Plan Name </label><input type="text" name="plan_name" class="field-style field-split align-left" value='+planname+' placeholder="Plan Name" readonly /><br /><label>Your Name </label><input type="text" name="name" class="field-style field-split align-left" placeholder="Name" />'+
 '<label>Dob </label><input type="text" name="dob" class="field-style field-split align-right" placeholder="DOB" />'+
 '<label>Sex </label><input type="text" name="sex" class="field-style field-split align-left" placeholder="Sex" />'+
 '<br /><br /><input type="submit" value="Submit" />'+
 '</form></div>'+
-'</body></html>';
+'</body><script type="text/javascript">window.open("", "_self", "");window.close();</script></html>';
 
 res.write(form1);
 
@@ -150,6 +150,7 @@ var arr = textWithNextline.split("</br>");
 
 console.log("Check splitted ::>>" + arr);      
 
+
 if(arr[3] == "Name")
 {
 var your_name = arr[4].toString().toUpperCase();
@@ -160,20 +161,44 @@ else if(arr[2] == "Name")
 var your_name = arr[3].toString().toUpperCase();
 }
 
+else if(arr[1].match(/[IDENTITY CARD NO]/g))
+{
+var your_name = arr[2].toString().toUpperCase();
+}
+
 console.log("Name ::>>" + your_name);      
+
+if(arr[8].match(/[A-Z]/g))
+{
+var sex = arr[8];
+}
 
 if(arr[9].match(/[A-Z]/g))
 {
 var sex = arr[9];
-console.log("SEX ::>>" + arr[9]);      
 }
 
 else if(arr[10].match(/[A-Z]/g))
 {
 var sex = arr[10];
-console.log("SEX ::>>" + arr[10]);      
 }
 
+else if(arr[11].match(/[A-Z]/g))
+{
+var sex = arr[11];
+}
+
+console.log("SEX ::>>" + sex);      
+
+if(arr[7].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
+{
+var dob = arr[7];
+}
+
+if(arr[8].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
+{
+var dob = arr[8];
+}
 
 if(arr[9].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
 {
@@ -185,11 +210,16 @@ else if(arr[10].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
 var dob = arr[10];
 }
 
+else if(arr[11].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
+{
+var dob = arr[11];
+}
+
 console.log("DOB ::>>" + dob);      
 	  
 var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="https://s3-us-west-2.amazonaws.com/telcocode/responsiveform.css"><div id="envelope"><body align="left" style="margin:0 auto;"><header><h2>Personal Details</h2></header><hr>' +
 '<form class="form-style-9" action="" method="post" enctype="multipart/form-data">' +
-'<input type="file" style="font-size:32px; float:left;" name="image" accept="image/*" /><input type="submit" style="width:250px; padding:10px; font-size:32px; float:right;" value="Upload NRIC" /><div style="clear:both;"></div></form><form class="form-style-9" action="" method="post" enctype="multipart/form-data"><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Plan Name </label><input type="text" name="plan_name" class="field-style field-split align-left" value='+planname+' placeholder="Plan Name" readonly /><br /><label>Your Name </label><input type="text" name="name" class="field-style field-split align-left" placeholder="Name" value="'+your_name+'" />'+
+'<label class="custom-file-upload">Choose File<input type="file" style="font-size:32px; float:left;" name="image" accept="image/*" /></label><input type="submit" style="width:250px; padding:10px; font-size:32px; float:right;" value="Upload NRIC" /><div style="clear:both;"></div></form><form class="form-style-9" action="" method="post" enctype="multipart/form-data"><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Plan Name </label><input type="text" name="plan_name" class="field-style field-split align-left" value='+planname+' placeholder="Plan Name" readonly /><br /><label>Your Name </label><input type="text" name="name" class="field-style field-split align-left" placeholder="Name" value="'+your_name+'" />'+
 '<label>Dob </label><input type="text" name="dob" class="field-style field-split align-right" placeholder="DOB" value="'+dob+'" />'+
 '<label>Sex </label><input type="text" name="sex" class="field-style field-split align-left" placeholder="Sex" value="'+sex+'" />'+
 '<br /><br /><input type="submit" value="Submit" />'+
@@ -239,7 +269,7 @@ var planname = req.params.planname;
 
 var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="https://s3-us-west-2.amazonaws.com/telcocode/responsiveform.css"><div id="envelope"><body align="left" style="margin:0 auto;"><header><h2>Personal Details</h2></header><hr>' +
 '<form class="form-style-9" action="" method="post" enctype="multipart/form-data">' +
-'<input type="file" style="font-size:32px; float:left;" name="image" accept="image/*" /><input type="submit" style="width:250px; padding:10px; float:right; font-size:32px;" value="Upload NRIC" /><div style="clear:both;"></div></form><form class="form-style-9" action="" method="post" enctype="multipart/form-data"><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Plan Name </label><input type="text" name="plan_name" class="field-style field-split align-left" value='+planname+' placeholder="Plan Name" readonly /><br /><label>Your Name </label><input type="text" name="name" class="field-style field-split align-left" placeholder="Name" />'+
+'<label class="custom-file-upload">Choose File<input type="file" style="font-size:32px; float:left;" name="image" accept="image/*" /></label><input type="submit" style="width:250px; padding:10px; float:right; font-size:32px;" value="Upload NRIC" /><div style="clear:both;"></div></form><form class="form-style-9" action="" method="post" enctype="multipart/form-data"><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Plan Name </label><input type="text" name="plan_name" class="field-style field-split align-left" value='+planname+' placeholder="Plan Name" readonly /><br /><label>Your Name </label><input type="text" name="name" class="field-style field-split align-left" placeholder="Name" />'+
 '<label>Dob </label><input type="text" name="dob" class="field-style field-split align-right" placeholder="DOB" />'+
 '<label>Sex </label><input type="text" name="sex" class="field-style field-split align-left" placeholder="Sex" />'+
 '<br /><br /><input type="submit" value="Submit" />'+
