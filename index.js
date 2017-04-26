@@ -160,22 +160,22 @@ else if(arr[2] == "Name")
 var your_name = arr[3].toString().toUpperCase();
 }
 
-if(arr[9].match(/[A-Z]/g);)
+if(arr[9].match(/[A-Z]/g))
 {
 	var sex = arr[9];
 }
 
-else if(arr[10].match(/[A-Z]/g);)
+else if(arr[10].match(/[A-Z]/g))
 {
 	var sex = arr[10];
 }
 
-else if(arr[9].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g);)
+else if(arr[9].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
 {
 var dob = arr[9];
 }
 
-else if(arr[10].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g);)
+else if(arr[10].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
 {
 var dob = arr[10];
 }
