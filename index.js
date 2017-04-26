@@ -133,6 +133,8 @@ console.log("Check texts ::>>" + textWithNextline);
 	  
 var arr = textWithNextline.split("</br>");
 
+console.log("Check splitted ::>>" + arr);      
+
 var your_name = arr[4];
 	  
 var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="https://s3-us-west-2.amazonaws.com/telcocode/responsiveform.css"><div id="envelope"><body align="left" style="margin:0 auto;"><header><h2>Personal Details</h2></header><hr>' +
