@@ -100,7 +100,8 @@ res.writeHead(200, {
 });
   
 var form1 = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="https://s3-us-west-2.amazonaws.com/telcocode/responsiveform.css">'+
-'<div id="envelope"><body align="left" onload="window.location("http://m.me/digitaldemofortelcos");"><header><h2>Personal Details</h2></header><hr>' +
+'<div id="envelope"><body align="left" onload="window.location("http://m.me/digitaldemofortelcos");">'+
+'<script type="text/javascript">open(location, "_self").close();</script><header><h2>Personal Details</h2></header><hr>' +
 '<p>Request submitted successfully</p>'+
 '<form class="form-style-9" action="" method="post" enctype="multipart/form-data">' +
 '<label id="custom-file-upload">Choose File<input type="file" style="font-size:32px; float:left;" onchange= document.getElementById("custom-file-upload").style.backgroundColor="#32CD32"; name="image" accept="image/*" /></label><input type="submit" style="width:250px; padding:10px; font-size:32px; float:right;" value="Upload NRIC" /><div style="clear:both;"></div></form><form class="form-style-9" action="" method="post" enctype="multipart/form-data"><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Plan Name </label><input type="text" name="plan_name" class="field-style field-split align-left" value='+planname+' placeholder="Plan Name" readonly /><br /><label>Your Name </label><input type="text" name="name" class="field-style field-split align-left" placeholder="Name" />'+
