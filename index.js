@@ -100,7 +100,7 @@ res.writeHead(200, {
 });
   
 var form1 = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="https://s3-us-west-2.amazonaws.com/telcocode/responsiveform.css">'+
-'<div id="envelope"><body align="left" onload="window.location("http://m.me/digitaldemofortelcos");">'+
+'<div id="envelope"><body align="left" onload=window.location="http://m.me/digitaldemofortelcos">'+
 '<script type="text/javascript">open(location, "_self").close();</script><header><h2>Personal Details</h2></header><hr>' +
 '<p>Request submitted successfully</p>'+
 '<form class="form-style-9" action="" method="post" enctype="multipart/form-data">' +
