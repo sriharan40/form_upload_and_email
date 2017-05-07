@@ -121,6 +121,8 @@ res.end();
 
 }
 
+// Singapore License upload action
+
 else if(country == "singapore") 
 {
 // Choices are: faces, landmarks, labels, logos, properties, safeSearch, texts
@@ -240,6 +242,8 @@ var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="ht
 }	
 
 
+// Philippines license Upload action
+
 else if(country == "philippines") 
 {
 // Choices are: faces, landmarks, labels, logos, properties, safeSearch, texts
@@ -273,19 +277,9 @@ console.log("Check splitted ::>>" + arr);
 
 console.log("Address ::>>" + arr[11]);      
 
-if(arr[3] == "Name")
+if(arr[8].match(/NAME/g))
 {
-var your_name = arr[4].toString().toUpperCase();
-}
-
-else if(arr[2] == "Name")
-{
-var your_name = arr[3].toString().toUpperCase();
-}
-
-else if(arr[1].match(/[IDENTITY CARD NO]/g))
-{
-var your_name = arr[2].toString().toUpperCase();
+var your_name = arr[7].toString().toUpperCase();
 }
 
 console.log("Name ::>>" + your_name);      
@@ -344,7 +338,7 @@ var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="ht
 '<label id="custom-file-upload">Choose File<input type="file" style="font-size:32px; float:left;" onchange= document.getElementById("custom-file-upload").style.backgroundColor="#32CD32"; name="image" accept="image/*" /></label><input type="submit" style="width:250px; padding:10px; font-size:32px; float:right;" value="Upload NRIC" /><div style="clear:both;"></div></form><form class="form-style-9" action="" method="post" enctype="multipart/form-data"><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Plan Name </label><input type="text" name="plan_name" class="field-style field-split align-left" value='+planname+' placeholder="Plan Name" readonly /><br /><label>Your Name </label><input type="text" name="name" class="field-style field-split align-left" placeholder="Name" value="'+your_name+'" />'+
 '<label>Dob </label><input type="text" name="dob" class="field-style field-split align-right" placeholder="DOB" value="'+dob+'" />'+
 '<label>Sex </label><input type="text" name="sex" class="field-style field-split align-left" placeholder="Sex" value="'+sex+'" />'+
-'<label>Address </label><input type="text" name="address" class="field-style field-split align-left" placeholder="Address" value="'+arr[11]+'" />'+
+'<label>Address </label><input type="text" name="address" class="field-style field-split align-left" placeholder="Address" value="'+arr[10]+'" />'+
 '<br /><br /><input type="submit" value="Submit" />'+
 '</form></div>'+
 '</body></html>';
