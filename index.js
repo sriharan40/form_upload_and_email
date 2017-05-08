@@ -275,7 +275,7 @@ var arr = textWithNextline.split("</br>");
 
 console.log("Check splitted ::>>" + arr);      
 
-var address = arr[11];
+var address = arr[10];
 
 console.log("Address ::>>" + address);     
 
@@ -293,7 +293,7 @@ var sex = arr[16];
 
 if(arr[17].match(/[A-Z]/g))
 {
-var sex = arr[17];
+var sex = arr[17].match(/[A-Z]/g).text();
 }
 
 else if(arr[15].match(/[A-Z]/g))
@@ -307,6 +307,11 @@ var sex = arr[14];
 }
 
 console.log("SEX ::>>" + sex);      
+
+else if(arr[16].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
+{
+var dob = arr[16];
+}
 
 if(arr[12].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
 {
@@ -328,10 +333,6 @@ else if(arr[15].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
 var dob = arr[15];
 }
 
-else if(arr[16].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
-{
-var dob = arr[16];
-}
 
 console.log("DOB ::>>" + dob);      
 	  
