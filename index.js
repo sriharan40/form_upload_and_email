@@ -286,14 +286,16 @@ var your_name = arr[7].toString().toUpperCase();
 
 console.log("Name ::>>" + your_name);      
 
+if(arr[17].match(/[A-Z]/g))
+{
+var sex = arr[17].match(/[A-Z]/g);
+var sex1 = sex.split(" ");
+var sex = sex1[0];
+}
+
 if(arr[16].match(/[A-Z]/g))
 {
 var sex = arr[16];
-}
-
-if(arr[17].match(/[A-Z]/g))
-{
-var sex = arr[17].match(/[A-Z]/g).text();
 }
 
 else if(arr[15].match(/[A-Z]/g))
