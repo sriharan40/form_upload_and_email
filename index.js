@@ -275,7 +275,9 @@ var arr = textWithNextline.split("</br>");
 
 console.log("Check splitted ::>>" + arr);      
 
-console.log("Address ::>>" + arr[11]);      
+var address = arr[11];
+
+console.log("Address ::>>" + address);     
 
 if(arr[8].match(/NAME/g))
 {
@@ -284,51 +286,51 @@ var your_name = arr[7].toString().toUpperCase();
 
 console.log("Name ::>>" + your_name);      
 
-if(arr[8].match(/[A-Z]/g))
+if(arr[16].match(/[A-Z]/g))
 {
-var sex = arr[8];
+var sex = arr[16];
 }
 
-if(arr[9].match(/[A-Z]/g))
+if(arr[17].match(/[A-Z]/g))
 {
-var sex = arr[9];
+var sex = arr[17];
 }
 
-else if(arr[10].match(/[A-Z]/g))
+else if(arr[15].match(/[A-Z]/g))
 {
-var sex = arr[10];
+var sex = arr[15];
 }
 
-else if(arr[11].match(/[A-Z]/g))
+else if(arr[14].match(/[A-Z]/g))
 {
-var sex = arr[11];
+var sex = arr[14];
 }
 
 console.log("SEX ::>>" + sex);      
 
-if(arr[7].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
+if(arr[12].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
 {
-var dob = arr[7];
+var dob = arr[12];
 }
 
-if(arr[8].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
+if(arr[13].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
 {
-var dob = arr[8];
+var dob = arr[13];
 }
 
-if(arr[9].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
+if(arr[14].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
 {
-var dob = arr[9];
+var dob = arr[14];
 }
 
-else if(arr[10].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
+else if(arr[15].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
 {
-var dob = arr[10];
+var dob = arr[15];
 }
 
-else if(arr[11].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
+else if(arr[16].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
 {
-var dob = arr[11];
+var dob = arr[16];
 }
 
 console.log("DOB ::>>" + dob);      
@@ -338,7 +340,7 @@ var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="ht
 '<label id="custom-file-upload">Choose File<input type="file" style="font-size:32px; float:left;" onchange= document.getElementById("custom-file-upload").style.backgroundColor="#32CD32"; name="image" accept="image/*" /></label><input type="submit" style="width:250px; padding:10px; font-size:32px; float:right;" value="Upload NRIC" /><div style="clear:both;"></div></form><form class="form-style-9" action="" method="post" enctype="multipart/form-data"><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Plan Name </label><input type="text" name="plan_name" class="field-style field-split align-left" value='+planname+' placeholder="Plan Name" readonly /><br /><label>Your Name </label><input type="text" name="name" class="field-style field-split align-left" placeholder="Name" value="'+your_name+'" />'+
 '<label>Dob </label><input type="text" name="dob" class="field-style field-split align-right" placeholder="DOB" value="'+dob+'" />'+
 '<label>Sex </label><input type="text" name="sex" class="field-style field-split align-left" placeholder="Sex" value="'+sex+'" />'+
-'<label>Address </label><input type="text" name="address" class="field-style field-split align-left" placeholder="Address" value="'+arr[10]+'" />'+
+'<label>Address </label><input type="text" name="address" class="field-style field-split align-left" placeholder="Address" value="'+address+'" />'+
 '<br /><br /><input type="submit" value="Submit" />'+
 '</form></div>'+
 '</body></html>';
