@@ -279,9 +279,24 @@ var address = arr[10];
 
 console.log("Address ::>>" + address);     
 
-if(arr[8].match(/NAME/g))
+if(arr[7].match(/NAME/g))
+{
+var your_name = arr[8].toString().toUpperCase();
+}
+
+else if(arr[8].match(/NAME/g))
+{
+var your_name = arr[9].toString().toUpperCase();
+}
+
+else if(arr[6].match(/NAME/g))
 {
 var your_name = arr[7].toString().toUpperCase();
+}
+
+else if(arr[9].match(/NAME/g))
+{
+var your_name = arr[10].toString().toUpperCase();
 }
 
 console.log("Name ::>>" + your_name);      
@@ -291,19 +306,49 @@ if(arr[16].match(/[F]/g))
 var sex = arr[16].match(/[F]/g);
 }
 
-else if(arr[15].match(/[F]/g))
-{
-var sex = arr[15].match(/[F]/g);
-}
-
 else if(arr[17].match(/[F]/g))
 {
 var sex = arr[17].match(/[F]/g);
 }
 
+else if(arr[15].match(/[F]/g))
+{
+var sex = arr[15].match(/[F]/g);
+}
+
 else if(arr[14].match(/[F]/g))
 {
 var sex = arr[14].match(/[F]/g);
+}
+
+else if(arr[9].match(/[F]/g))
+{
+var sex = arr[9].match(/[F]/g);
+}
+
+else if(arr[17].match(/[M]/g))
+{
+var sex = arr[17].match(/[M]/g);
+}
+
+else if(arr[16].match(/[M]/g))
+{
+var sex = arr[16].match(/[M]/g);
+}
+
+else if(arr[15].match(/[M]/g))
+{
+var sex = arr[15].match(/[M]/g);
+}
+
+else if(arr[14].match(/[M]/g))
+{
+var sex = arr[14].match(/[M]/g);
+}
+
+else if(arr[9].match(/[M]/g))
+{
+var sex = arr[9].match(/[M]/g);
 }
 
 console.log("SEX ::>>" + sex);      
