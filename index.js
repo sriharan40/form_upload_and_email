@@ -253,9 +253,8 @@ var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="ht
 
 // Philippines license Upload action
 
-else if(country == "philippines") 
+else if(country == "philippines" && country1 == "Philippines") 
 {
-console.log("Country1: "+country1);
 // Choices are: faces, landmarks, labels, logos, properties, safeSearch, texts
 var types = ['text'];
 
@@ -413,6 +412,77 @@ var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="ht
   		
 }
 
+
+// Philippines license Upload action
+
+else if(country == "philippines" && country1 == "Philippines") 
+{
+// Choices are: faces, landmarks, labels, logos, properties, safeSearch, texts
+var types = ['text'];
+
+//console.log("Req: "+req.body.toString());
+  
+console.log("Path: "+req.file.path);
+  
+// Send the image to the Cloud Vision API
+vision.detect(req.file.path, types, function(err, detections, apiResponse) {
+  if (err) {
+      res.end('Cloud Vision Error '+err);
+    } else {
+      res.writeHead(200, {
+        'Content-Type': 'text/html'
+      });
+
+//var jsonOutput = JSON.parse(apiResponse);
+var texts = JSON.stringify(apiResponse.responses[0].textAnnotations[0].description);
+
+var textsHtmlwithoutQuotes = texts.replace(/"/g, '');
+
+var textWithNextline = textsHtmlwithoutQuotes.replace(/\\n/g, '</br>');
+
+console.log("Check texts ::>>" + textWithNextline);      
+	  
+var arr = textWithNextline.split("</br>");
+
+console.log("Check splitted ::>>" + arr);      
+
+var address = arr[13]." ".arr[14];
+
+console.log("Address ::>>" + address);     
+
+var your_name = arr[7].toString().toUpperCase();
+
+console.log("Name ::>>" + your_name);      
+
+
+if(arr[24].match(/[0-9][0-9][ ][A-Z][A-Z][A-Z][ ][0-9][0-9][0-9][0-9]/g))
+{
+var dob = arr[24];
+}
+
+console.log("DOB ::>>" + dob);      
+	  
+var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="https://s3-us-west-2.amazonaws.com/telcocode/responsiveform.css"><div id="envelope"><body align="left" style="margin:0 auto;"><header><h2>Personal Details</h2></header><hr>' +
+'<form class="form-style-9" action="" method="post" enctype="multipart/form-data">' +
+'<label id="choose_country" style="line-height:40px; float:left; margin-top:0px; margin-right:60px;">Choose country </label><select style="padding:10px; width:300px; font-size:32px;" name="country"><option value="Philippines">Philippines</option><option value="Australia">Australia</option></select><div style="clear:both;"></div><br /><br />' +
+'<label id="custom-file-upload">Choose File<input type="file" style="font-size:32px; float:left;" onchange= document.getElementById("custom-file-upload").style.backgroundColor="#32CD32"; name="image" accept="image/*" /></label><input type="submit" style="width:250px; padding:10px; font-size:32px; float:right;" value="Upload ID" /><div style="clear:both;"></div></form><form class="form-style-9" action="" method="post" enctype="multipart/form-data"><p style="font-size:32px; line-height:40px;">Please validate that the info was captured in the form correctly. You can edit the info, in case the info was not captured.</p><br /><label>Plan Name </label><input type="text" name="plan_name" class="field-style field-split align-left" value='+planname+' placeholder="Plan Name" readonly /><br /><label>Your Name </label><input type="text" name="name" class="field-style field-split align-left" placeholder="Name" value="'+your_name+'" />'+
+'<label>Dob </label><input type="text" name="dob" class="field-style field-split align-right" placeholder="DOB" value="'+dob+'" />'+
+'<label>Sex </label><input type="text" name="sex" class="field-style field-split align-left" placeholder="Sex" value="" />'+
+'<label>Address </label><input type="text" name="address" class="field-style field-split align-left" placeholder="Address" value="'+address+'" />'+
+'<br /><br /><input type="submit" value="Submit" />'+
+'</form></div>'+
+'</body></html>';
+
+	  res.write(form);
+	  
+      // Delete file (optional)
+      fs.unlinkSync(req.file.path);
+
+      res.end();
+    }
+  });
+  		
+}
 
 });
 
