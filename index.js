@@ -415,7 +415,7 @@ var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="ht
 
 // Philippines license Upload action
 
-else if(country == "philippines" && country1 == "Philippines") 
+else if(country == "philippines" && country1 == "Australia") 
 {
 // Choices are: faces, landmarks, labels, logos, properties, safeSearch, texts
 var types = ['text'];
@@ -446,7 +446,7 @@ var arr = textWithNextline.split("</br>");
 
 console.log("Check splitted ::>>" + arr);      
 
-var address = arr[13]." ".arr[14];
+var address = arr[13]+" "+arr[14];
 
 console.log("Address ::>>" + address);     
 
