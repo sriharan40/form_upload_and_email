@@ -60,15 +60,15 @@ var sex = req.body.sex;
 if(name && dob && sex)
 {
 	
-//sendmail({
-//from: 'no-reply@yourdomain.com',
-//to: 'sriharan40@gmail.com, himantgupta@gmail.com',
-//subject: 'Test sendmail',
-//html: JSON.stringify(req.body),
-//}, function(err, reply) {
-//console.log(err && err.stack);
-//console.dir(reply);
-//});
+sendmail({
+from: 'no-reply@yourdomain.com',
+to: 'sriharan40@gmail.com, himantgupta@gmail.com',
+subject: 'Test sendmail',
+html: JSON.stringify(req.body),
+}, function(err, reply) {
+console.log(err && err.stack);
+console.dir(reply);
+});
 
 
 var text = "Your request was submitted successfully with the details as : Name : "+name+", Plan : "+planname+", Sex : "+sex+", DOB : "+dob+" \n\n Our sales team will contact you within 48Hours.";
