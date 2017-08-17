@@ -101,6 +101,27 @@ if (error) {
 
 });
 
+
+request.post({ 
+  url : "https://graph.facebook.com/"+process.env.FB_APP_ID+"/activities",
+  form: {
+	event: 'CUSTOM_APP_EVENTS',
+	custom_events: JSON.stringify([{
+	  _eventName: "Form submitted",
+	  _user_text: "Form Submitted"
+	}]),
+	advertiser_tracking_enabled: 0,
+	application_tracking_enabled: 0,
+	extinfo: JSON.stringify(['mb1']),
+	page_id: process.env.FB_PAGE_ID,
+	page_scoped_user_id: user_id
+  }
+}, function(err,httpResponse,body){ 
+  console.error(err);
+  console.log(httpResponse.statusCode);
+  console.log(body);
+});
+
 res.writeHead(200, {
 'Content-Type': 'text/html'
 });
