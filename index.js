@@ -108,7 +108,7 @@ request.post({
 	event: 'CUSTOM_APP_EVENTS',
 	custom_events: JSON.stringify([{
 	  _eventName: "Form submitted",
-	  _user_text: "Form Submitted"
+	  _user_text: "Form"
 	}]),
 	advertiser_tracking_enabled: 0,
 	application_tracking_enabled: 0,
@@ -118,7 +118,8 @@ request.post({
   }
 }, function(err,httpResponse,body){ 
   console.error(err);
-  console.log(httpResponse.statusCode);
+  '
+//console.log(httpResponse.statusCode);
   console.log(body);
 });
 
