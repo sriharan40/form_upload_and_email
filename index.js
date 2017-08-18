@@ -143,7 +143,7 @@ var form1 = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="h
 res.write(form1);
 
 // Delete file (optional)
-fs.unlinkSync(req.file.path);
+// fs.unlinkSync(req.file.path);
 
 res.end();
 
@@ -261,7 +261,7 @@ var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="ht
 	  res.write(form);
 	  
       // Delete file (optional)
-      fs.unlinkSync(req.file.path);
+     // fs.unlinkSync(req.file.path);
 
       res.end();
     }
@@ -423,7 +423,7 @@ var form = '<!DOCTYPE HTML><html><link rel="stylesheet" type="text/css" href="ht
 	  res.write(form);
 	  
       // Delete file (optional)
-      fs.unlinkSync(req.file.path);
+     // fs.unlinkSync(req.file.path);
 
       res.end();
     }
