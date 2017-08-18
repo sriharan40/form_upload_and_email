@@ -80,7 +80,7 @@ request.post({
 });
 	
 sendmail({
-from: 'no-reply@yourdomain.com',
+from: 'no-reply@herokuapp.com',
 to: 'sriharan40@gmail.com, himantgupta@gmail.com',
 subject: 'Test sendmail',
 html: JSON.stringify(req.body),
