@@ -193,56 +193,56 @@ else if(arr[2] == "Name")
 var your_name = arr[3].toString().toUpperCase();
 }
 
-else if(arr[1].match(/[IDENTITY CARD NO]/g))
+else if(arr[1] != undefined && arr[1].match(/[IDENTITY CARD NO]/g))
 {
 var your_name = arr[2].toString().toUpperCase();
 }
 
 console.log("Name ::>>" + your_name);      
 
-if(arr[8].match(/[A-Z]/g))
+if(arr[8] != undefined && arr[8].match(/[A-Z]/g))
 {
 var sex = arr[8];
 }
 
-if(arr[9].match(/[A-Z]/g))
+if(arr[9] != undefined && arr[9].match(/[A-Z]/g))
 {
 var sex = arr[9];
 }
 
-else if(arr[10].match(/[A-Z]/g))
+else if(arr[10] != undefined && arr[10].match(/[A-Z]/g))
 {
 var sex = arr[10];
 }
 
-else if(arr[11].match(/[A-Z]/g))
+else if(arr[11] != undefined && arr[11].match(/[A-Z]/g))
 {
 var sex = arr[11];
 }
 
 console.log("SEX ::>>" + sex);      
 
-if(arr[7].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
+if(arr[7] != undefined && arr[7].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
 {
 var dob = arr[7];
 }
 
-if(arr[8].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
+if(arr[8] != undefined && arr[8].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
 {
 var dob = arr[8];
 }
 
-if(arr[9].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
+if(arr[9] != undefined && arr[9].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
 {
 var dob = arr[9];
 }
 
-else if(arr[10].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
+else if(arr[10] != undefined && arr[10].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
 {
 var dob = arr[10];
 }
 
-else if(arr[11].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
+else if(arr[11] != undefined && arr[11].match(/[0-9][0-9][-][0-9][0-9][-][0-9][0-9][0-9][0-9]/g))
 {
 var dob = arr[11];
 }
@@ -307,22 +307,22 @@ var address = arr[10];
 
 console.log("Address ::>>" + address);     
 
-if(arr[7].match(/NAME/g))
+if(arr[7] != undefined && arr[7].match(/NAME/g))
 {
 var your_name = arr[8].toString().toUpperCase();
 }
 
-else if(arr[8].match(/NAME/g))
+else if(arr[8] != undefined && arr[8].match(/NAME/g))
 {
 var your_name = arr[9].toString().toUpperCase();
 }
 
-else if(arr[6].match(/NAME/g))
+else if(arr[6] != undefined && arr[6].match(/NAME/g))
 {
 var your_name = arr[7].toString().toUpperCase();
 }
 
-else if(arr[9].match(/NAME/g))
+else if(arr[9] != undefined && arr[9].match(/NAME/g))
 {
 var your_name = arr[10].toString().toUpperCase();
 }
@@ -334,74 +334,74 @@ if(arr[16] != undefined && arr[16].match(/[F]/g))
 var sex = arr[16].match(/[F]/g);
 }
 
-else if(arr[17].match(/[F]/g))
+else if(arr[17] != undefined && arr[17].match(/[F]/g))
 {
 var sex = arr[17].match(/[F]/g);
 }
 
-else if(arr[15].match(/[F]/g))
+else if(arr[15] != undefined && arr[15].match(/[F]/g))
 {
 var sex = arr[15].match(/[F]/g);
 }
 
-else if(arr[14].match(/[F]/g))
+else if(arr[14] != undefined && arr[14].match(/[F]/g))
 {
 var sex = arr[14].match(/[F]/g);
 }
 
-else if(arr[9].match(/[F]/g))
+else if(arr[9] != undefined && arr[9].match(/[F]/g))
 {
 var sex = arr[9].match(/[F]/g);
 }
 
-else if(arr[17].match(/[M]/g))
+else if(arr[17] != undefined && arr[17].match(/[M]/g))
 {
 var sex = arr[17].match(/[M]/g);
 }
 
-else if(arr[16].match(/[M]/g))
+else if(arr[16] != undefined && arr[16].match(/[M]/g))
 {
 var sex = arr[16].match(/[M]/g);
 }
 
-else if(arr[15].match(/[M]/g))
+else if(arr[15] != undefined && arr[15].match(/[M]/g))
 {
 var sex = arr[15].match(/[M]/g);
 }
 
-else if(arr[14].match(/[M]/g))
+else if(arr[14] != undefined && arr[14].match(/[M]/g))
 {
 var sex = arr[14].match(/[M]/g);
 }
 
-else if(arr[9].match(/[M]/g))
+else if(arr[9] != undefined && arr[9].match(/[M]/g))
 {
 var sex = arr[9].match(/[M]/g);
 }
 
 console.log("SEX ::>>" + sex);      
 
-if(arr[14].match(/[0-9][0-9][0-9][0-9][-][0-9][0-9][-][0-9][0-9]/g))
+if(arr[14] != undefined && arr[14].match(/[0-9][0-9][0-9][0-9][-][0-9][0-9][-][0-9][0-9]/g))
 {
 var dob = arr[14];
 }
 
-else if(arr[16].match(/[0-9][0-9][0-9][0-9][-][0-9][0-9][-][0-9][0-9]/g))
+else if(arr[16] != undefined && arr[16].match(/[0-9][0-9][0-9][0-9][-][0-9][0-9][-][0-9][0-9]/g))
 {
 var dob = arr[16];
 }
 
-else if(arr[12].match(/[0-9][0-9][0-9][0-9][-][0-9][0-9][-][0-9][0-9]/g))
+else if(arr[12] != undefined && arr[12].match(/[0-9][0-9][0-9][0-9][-][0-9][0-9][-][0-9][0-9]/g))
 {
 var dob = arr[12];
 }
 
-else if(arr[13].match(/[0-9][0-9][0-9][0-9][-][0-9][0-9][-][0-9][0-9]/g))
+else if(arr[13] != undefined && arr[13].match(/[0-9][0-9][0-9][0-9][-][0-9][0-9][-][0-9][0-9]/g))
 {
 var dob = arr[13];
 }
 
-else if(arr[15].match(/[0-9][0-9][0-9][0-9][-][0-9][0-9][-][0-9][0-9]/g))
+else if(arr[15] != undefined && arr[15].match(/[0-9][0-9][0-9][0-9][-][0-9][0-9][-][0-9][0-9]/g))
 {
 var dob = arr[15];
 }
@@ -474,7 +474,7 @@ var your_name = arr[7].toString().toUpperCase();
 console.log("Name ::>>" + your_name);      
 
 
-if(arr[24].match(/[0-9][0-9][ ][A-Z][A-Z][A-Z][ ][0-9][0-9][0-9][0-9]/g))
+if(arr[24] != undefined && arr[24].match(/[0-9][0-9][ ][A-Z][A-Z][A-Z][ ][0-9][0-9][0-9][0-9]/g))
 {
 var dob = arr[24];
 }
