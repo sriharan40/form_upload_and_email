@@ -329,7 +329,7 @@ var your_name = arr[10].toString().toUpperCase();
 
 console.log("Name ::>>" + your_name);      
 
-if(arr[16].match(/[F]/g))
+if(arr[16] != "" && arr[16].match(/[F]/g))
 {
 var sex = arr[16].match(/[F]/g);
 }
